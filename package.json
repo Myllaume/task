@@ -1,0 +1,24 @@
+{
+  "name": "task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Myllaume/task"
+  },
+  "author": "Guillaume Brioudes <https://myllaume.fr/>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Myllaume/task/issues"
+  },
+  "homepage": "https://github.com/Myllaume/task#readme",
+  "dependencies": {
+    "js-yaml": "^3.14.0",
+    "moment": "^2.29.1",
+    "yaml-front-matter": "^4.1.1"
+  }
+}
