@@ -21,7 +21,7 @@ const requiredMetas = ['id', 'title', 'stage', 'category', 'end_date']
         let metas = file;
 
         metas.fileName = fileName;
-        metas.end_date = moment(metas.end_date).format('YYYY-MM-DD');
+        metas.end_date = ((!metas.end_date) ? 'ND' : moment(metas.end_date).format('YYYY-MM-DD'));
 
         return metas;
     })
@@ -40,7 +40,7 @@ const requiredMetas = ['id', 'title', 'stage', 'category', 'end_date']
     });
 
 for (const stage of validStages) {
-    content += `# ${stage}\n\n`
+    content += `# ${stage}\n`
 
     let currentStageFiles = files
         .filter(file => file.stage === stage)
@@ -54,10 +54,10 @@ for (const stage of validStages) {
         })
 
     for (const file of currentStageFiles) {
-        content += `- [[${file.id}]] ${file.title} ${file.category} ${file.end_date}\n`;
+        content += `\n- [[${file.id}]] *${file.title}* ‹${file.category}› ${file.end_date}`;
     }
 
-    content += '\n';
+    content += '\n\n';
 }
 
 fs.writeFile(config.files_origin + '_index.md', content, (err) => { // Export in import folder
