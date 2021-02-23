@@ -54,7 +54,8 @@ for (const stage of validStages) {
         })
 
     for (const file of currentStageFiles) {
-        content += `\n- [[${file.id}]] *${file.title}* ‹${file.category}› ${file.end_date}`;
+        const emojiLinked = config.categories[file.category] || '⬜️';
+        content += `\n- [[${file.id}]] ${emojiLinked} *${file.title}* ${file.end_date}`;
     }
 
     content += '\n\n';
