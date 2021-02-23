@@ -48,6 +48,12 @@ const rl = readline.createInterface({ input: process.stdin, output: process.stdo
             })
         })
     
+        metas.description = await new Promise((resolve, reject) => {
+            rl.question('description (facultative) ? ', (answer) => {
+                resolve(answer);
+            })
+        })
+    
         genMdFile(metas);
     } catch(err) {
         console.error('\x1b[31m', 'Err.', '\x1b[0m', err);
@@ -58,9 +64,12 @@ const rl = readline.createInterface({ input: process.stdin, output: process.stdo
 
 function genMdFile(metas) {
     metas.id = Number(moment().format('YYYYMMDDHHmmss'));
+    const description = metas.description;
+    delete metas.description;
+
     let content = yamlEditor.safeDump(metas);
 
-    content = '---\n' + content + '---\n\n';
+    content = '---\n' + content + '---\n\n' + description;
 
     const fileName = `${metas.category} - ${metas.title} - ${metas.id}`;
 
